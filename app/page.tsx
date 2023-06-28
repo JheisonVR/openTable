@@ -1,4 +1,4 @@
-import Image from 'next/image'
+
 import { NavBar, Header, RestaurantCard } from './components'
 
 export default function Home() {
@@ -7,10 +7,9 @@ export default function Home() {
       <main className="max-w-screen-2xl m-auto bg-white">        
         <NavBar/>
         <main>
-
-          {/* HEADER */}
+          
           <Header/>
-          {/* HEADER */} {/* CARDS */}
+          {/* CARDS */}
           <div className="py-3 px-36 mt-10 flex flex-wrap justify-center">
             <RestaurantCard/>
           </div>
