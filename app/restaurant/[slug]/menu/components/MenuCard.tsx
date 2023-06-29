@@ -3,7 +3,7 @@ import { RestaurantNavbar } from '../../components'
 
 export const MenuCard = () => {
     return (
-        <div className="flex m-auto w-2/3 justify-between items-start 0 -mt-11 text-blue-950">
+        <>
             <div className="bg-white w-[100%] rounded p-3 shadow">
                 {/* RESAURANT NAVBAR */}
                 <RestaurantNavbar/>
@@ -28,7 +28,7 @@ export const MenuCard = () => {
                 </main>
                 {/* MENU */}
             </div>
-        </div>
+        </>
     )
 }
 
