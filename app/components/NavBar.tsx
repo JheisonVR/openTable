@@ -12,7 +12,7 @@ export const NavBar = () => {
                     >
                     Sign in
                     </button>
-                    <button className="bg-red-600 border p-1 px-4 rounded">Sign up</button>
+                    <button className="bg-blue-950 border p-1 px-4 rounded">Sign up</button>
                 </div>
             </div>
         </nav>
