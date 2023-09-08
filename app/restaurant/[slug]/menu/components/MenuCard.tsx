@@ -1,34 +1,41 @@
 import React from 'react'
-import { RestaurantNavbar } from '../../components'
 
-export const MenuCard = () => {
+import { Item } from '@prisma/client'
+
+
+
+export const MenuCard = ( {menu} :{menu: Item[]} ) => {
     return (
-        <>
-            <div className="bg-white w-[100%] rounded p-3 shadow">
-                {/* RESAURANT NAVBAR */}
-                <RestaurantNavbar/>
-                {/* MENU */}
-                <main className="bg-white mt-5">
-                    <div>
-                        <div className="mt-4 pb-1 mb-1">
-                            <h1 className="font-bold text-4xl">Menu</h1>
-                        </div>
-                        <div className="flex flex-wrap justify-between">
-                        {/* MENU CARD */}
-                            <div className=" border rounded p-3 w-[49%] mb-3">
-                                <h3 className="font-bold text-lg">Surf and Turf</h3>
-                                <p className="font-light mt-1 text-sm">
-                                A well done steak with lobster and rice
-                                </p>
-                                <p className="mt-7">$80.00</p>
-                            </div>
-                        {/* MENU CARD */}
-                        </div>
+        <main className="bg-white mt-5">
+            <div>
+                <div className="mt-4 pb-1 mb-1">
+                    <h1 className="font-bold text-4xl">Menu</h1>
+                </div>
+                <div className="flex flex-wrap justify-between">
+                {/* {menu.map(m=>(
+                    <div key={m.id} >
+                        <h1>{m.name}</h1>
                     </div>
-                </main>
-                {/* MENU */}
+                ))}     */}
+                    {/* MENU CARD */}
+
+                        { menu.length ? menu.map(me =>(
+                            <div key={me.id} className=" border rounded p-3 w-[49%] mb-3">
+                                <h3 className="font-bold text-lg">{me.name}</h3>
+                                <p className="font-light mt-1 text-sm">
+                                    {me.description}
+                                </p>
+                                <p className="mt-7">{me.price}</p>
+                            </div>
+                        ))
+                        :
+                        <div>
+                            <h1>Not menu</h1>
+                        </div>
+                    }
+                </div>
             </div>
-        </>
+        </main>
     )
 }
 
