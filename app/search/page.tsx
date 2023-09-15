@@ -1,6 +1,6 @@
 // 'use client'
 import React from 'react'
-import { PrismaClient } from '@prisma/client'
+import { PRICE_CATEGORY, PrismaClient } from '@prisma/client'
 
 import { HeaderSearch, SearchRestaurantCard, SearchSideBar } from './components'
 
@@ -57,7 +57,11 @@ const fetchCuisine = async () => {
 }
 
 
-const SearchPage = async ( {searchParams} : {searchParams : {city:string} }) => {
+const SearchPage = async ({
+    searchParams
+} : {
+    searchParams: {city?:string; cusine?:string; price?:PRICE_CATEGORY } 
+}) => {
 
     const restaurants = await fetchFilterRestaurantCity(searchParams.city);
     const locations = await fetchCities();
@@ -70,6 +74,7 @@ const SearchPage = async ( {searchParams} : {searchParams : {city:string} }) => 
                 <SearchSideBar
                     cities = {locations}
                     cuisines = {cuisines}
+                    searchParams={searchParams}
                 />
                 <div className="w-5/6">
                     {
