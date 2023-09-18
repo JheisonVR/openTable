@@ -1,7 +1,9 @@
 import React from 'react'
-import Image from 'next/image'
+
 import { RestaurantCardProps } from '../page'
 import Link from 'next/link'
+import { Price } from './Price'
+
 
 
 interface Props{
@@ -28,11 +30,11 @@ export const RestaurantCard = ( {restaurants}: Props ) => {
                 <Link href={`/restaurant/${restaurants.slug}`} ><h3 className="font-bold text-2xl mb-2">{restaurants.name}</h3></Link>
                 <div className="flex items-start">
                     <div className="flex mb-2">*****</div>
-                    <p className="ml-2">77 reviews</p>
+                    <p className="ml-2">{restaurants.reviews.length} review{restaurants.reviews.length === 1 ? '':'s' }</p>
                 </div>
                 <div className="flex text-reg font-light capitalize">
                     <p className=" mr-3">{restaurants.cusine.name}</p>
-                    <p className="mr-3">$$$$</p>
+                    <Price price={restaurants.price_category}/>
                     <p>{restaurants.location.name}</p>
                 </div>
                 <p className="text-sm mt-1 font-bold">Booked 3 times today</p>

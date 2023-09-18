@@ -1,8 +1,20 @@
 import React from 'react'
 import { RestaurantCardProps } from '@/app/page'
 import Link from 'next/link'
+import { Price } from '@/app/components'
+import { calculateReviewRatingAverage } from '@/utils/calculateReviewRatingAverage'
 
 export const SearchRestaurantCard = ( {restaurant} : {restaurant:RestaurantCardProps} ) => {
+
+    const renderRatingText = () =>{
+        const rating = calculateReviewRatingAverage(restaurant.reviews);
+
+        if(rating > 4) return 'Awesome';
+        else if(rating <= 4 && rating > 3) return 'Good';
+        else if(rating <=3 && rating > 2) return 'Average';
+        else ''
+    }
+
     return (
         <div className="border-b flex pb-5 ml-4 mt-1">
             <img
@@ -14,11 +26,11 @@ export const SearchRestaurantCard = ( {restaurant} : {restaurant:RestaurantCardP
                 <h2 className="text-3xl"> {restaurant.name} </h2>
                 <div className="flex items-start">
                     <div className="flex mb-2">*****</div>
-                    <p className="ml-2 text-sm">Awesome</p>
+                    <p className="ml-2 text-sm"> {renderRatingText()} </p>
                 </div>
                 <div className="mb-9">
                     <div className="font-light flex text-reg">
-                        <p className="mr-4">$$$</p>
+                        <Price price={restaurant.price_category} />
                         <p className="mr-4 capitalize ">{restaurant.cusine.name}</p>
                         <p className="mr-4 capitalize ">{restaurant.location.name}</p>
                     </div>
