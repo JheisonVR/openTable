@@ -12,6 +12,27 @@ interface cuisines {
     name: string;
 }
 
+const priceList = [
+    {
+        label:'$$',
+        price:PRICE_CATEGORY.Cheap,
+        className:"border-r border-t border-b w-full text-reg font-light p-2 rounded-l"
+
+    },
+    {
+        label:'$$$',
+        price:PRICE_CATEGORY.Regular,
+        className:"border-r border-t border-b w-full text-reg font-light p-2"
+
+    },
+    {
+        label:'$$$$',
+        price:PRICE_CATEGORY.Expensive,
+        className:"border-r border-t border-b w-full text-reg font-light p-2 rounded-r"
+
+    }
+]
+
 export const SearchSideBar = ({
     cities, 
     cuisines,
@@ -22,7 +43,7 @@ export const SearchSideBar = ({
     searchParams : {city?:string; cusine?:string; price?:PRICE_CATEGORY }
 }) => {
     return (
-        <div className="w-1/5">
+        <div className="w-1/5 mr-3">
             <div className="border-b pb-4 flex flex-col">
                 <h1 className="mb-2 font-bold">Locations</h1>
                 {cities.length ? 
@@ -71,15 +92,23 @@ export const SearchSideBar = ({
             <div className="mt-3 pb-4">
                 <h1 className="mb-2 font-bold">Price</h1>
                 <div className="flex">
-                    <button className="border w-full text-reg font-light rounded-l p-2">
-                    $
-                    </button>
-                    <button className="border-r border-t border-b w-full text-reg font-light p-2">
-                    $$
-                    </button>
-                    <button className="border-r border-t border-b w-full text-reg font-light p-2 rounded-r">
-                    $$$
-                    </button>
+                    {
+                        priceList.map((p,i)=>(
+                            <Link
+                                key={i}
+                                className= {p.className}
+                                href={{
+                                    pathname:'/search',
+                                    query:{
+                                        ...searchParams,
+                                        price:p.price
+                                    }
+                                }}
+                            >
+                            {p.label}
+                            </Link>
+                        ))
+                    }
                 </div>
             </div>
         </div>

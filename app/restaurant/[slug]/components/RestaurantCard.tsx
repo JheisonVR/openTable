@@ -5,6 +5,8 @@ import { ReviewsRestaurant } from './ReviewsRestaurant'
 import { RestaurantReservationCard } from './RestaurantReservationCard'
 import { Restaurant } from '../page'
 import Image from 'next/image'
+import { calculateReviewRatingAverage } from '@/utils/calculateReviewRatingAverage'
+import { Stars } from '@/app/components'
 
 
 
@@ -24,11 +26,12 @@ export const RestaurantCard = ( {restaurant}: {restaurant:Restaurant} ) => {
                 {/* RATING */}
                 <div className="flex items-end">
                     <div className="ratings mt-2 flex items-center">
-                        <p>*****</p>
-                        <p className="text-reg ml-3">4.9</p>
+                        <Stars reviews={restaurant.reviews} />
+                        
+                        <p className="text-reg ml-3">{ calculateReviewRatingAverage( restaurant.reviews).toFixed(1)}</p>
                     </div>
                     <div>
-                        <p className="text-reg ml-4">600 Reviews</p>
+                        <p className="text-reg ml-4">{restaurant.reviews.length} Review{restaurant.reviews.length === 1 ? '':'s' }  </p>
                     </div>
                 </div>
 
@@ -64,7 +67,15 @@ export const RestaurantCard = ( {restaurant}: {restaurant:Restaurant} ) => {
                         ))}
                     </div>
                 </div>
-                <ReviewsRestaurant/>
+                <h1 className="font-bold text-3xl mt-10 mb-7 borber-b pb-5">
+                    What 100 people are saying
+                </h1>
+                {restaurant.reviews.map(( review )=>(
+                    <ReviewsRestaurant
+                        key={review.id}
+                        review = {review}
+                    />
+                ))}
             </div>
             <RestaurantReservationCard/>
         </>
