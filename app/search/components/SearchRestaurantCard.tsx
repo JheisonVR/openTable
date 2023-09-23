@@ -1,7 +1,7 @@
 import React from 'react'
 import { RestaurantCardProps } from '@/app/page'
 import Link from 'next/link'
-import { Price } from '@/app/components'
+import { Price, Stars } from '@/app/components'
 import { calculateReviewRatingAverage } from '@/utils/calculateReviewRatingAverage'
 
 export const SearchRestaurantCard = ( {restaurant} : {restaurant:RestaurantCardProps} ) => {
@@ -25,7 +25,9 @@ export const SearchRestaurantCard = ( {restaurant} : {restaurant:RestaurantCardP
             <div className="pl-5">
                 <h2 className="text-3xl"> {restaurant.name} </h2>
                 <div className="flex items-start">
-                    <div className="flex mb-2">*****</div>
+                    <div className='flex mb-2'>
+                        <Stars reviews={restaurant.reviews} />
+                    </div>
                     <p className="ml-2 text-sm"> {renderRatingText()} </p>
                 </div>
                 <div className="mb-9">

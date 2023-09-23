@@ -6,6 +6,7 @@ import { RestaurantReservationCard } from './RestaurantReservationCard'
 import { Restaurant } from '../page'
 import Image from 'next/image'
 import { calculateReviewRatingAverage } from '@/utils/calculateReviewRatingAverage'
+import { Stars } from '@/app/components'
 
 
 
@@ -25,7 +26,7 @@ export const RestaurantCard = ( {restaurant}: {restaurant:Restaurant} ) => {
                 {/* RATING */}
                 <div className="flex items-end">
                     <div className="ratings mt-2 flex items-center">
-                        <p>*****</p>
+                        <Stars reviews={restaurant.reviews} />
                         
                         <p className="text-reg ml-3">{ calculateReviewRatingAverage( restaurant.reviews).toFixed(1)}</p>
                     </div>

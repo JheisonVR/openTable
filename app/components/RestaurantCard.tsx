@@ -3,6 +3,7 @@ import React from 'react'
 import { RestaurantCardProps } from '../page'
 import Link from 'next/link'
 import { Price } from './Price'
+import { Stars } from './Stars'
 
 
 
@@ -29,7 +30,7 @@ export const RestaurantCard = ( {restaurants}: Props ) => {
             <div className="p-1 text-blue-950">
                 <Link href={`/restaurant/${restaurants.slug}`} ><h3 className="font-bold text-2xl mb-2">{restaurants.name}</h3></Link>
                 <div className="flex items-start">
-                    <div className="flex mb-2">*****</div>
+                    <Stars reviews={restaurants.reviews} />
                     <p className="ml-2">{restaurants.reviews.length} review{restaurants.reviews.length === 1 ? '':'s' }</p>
                 </div>
                 <div className="flex text-reg font-light capitalize">
